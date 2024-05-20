@@ -18,6 +18,9 @@ export default defineConfig(() => {
 		},
 		test: {
 			include: ['src/**/*.{test,spec}.{js,ts}']
+		},
+		server: {
+			port: Bun.env.PORT ? Number(Bun.env.PORT) : 3002
 		}
 	} satisfies UserConfig
 })
