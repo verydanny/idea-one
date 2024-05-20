@@ -6,7 +6,7 @@ export const csr = false
 
 export async function load({ locals }) {
 	// Logged out users can't access this page.
-	if (!locals.user) redirect(301, '/signup')
+	if (!locals.user) redirect(301, '/user/auth/signup')
 
 	// Pass the stored user local to the page.
 	return {
@@ -25,6 +25,6 @@ export const actions = {
 		event.cookies.delete(SESSION_COOKIE, { path: '/' })
 
 		// Redirect to the sign up page.
-		redirect(301, '/signup')
+		redirect(301, '/user/auth/signup')
 	}
 }

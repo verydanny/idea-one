@@ -1,11 +1,12 @@
 import { sveltekit } from '@sveltejs/kit/vite'
 // import { purgeCss } from 'vite-plugin-tailwind-purgecss'
 // import { visualizer } from 'rollup-plugin-visualizer'
+import { enhancedImages } from '@sveltejs/enhanced-img'
 import { type UserConfig, defineConfig } from 'vitest/config'
 
 export default defineConfig(() => {
 	return {
-		plugins: [sveltekit()],
+		plugins: [sveltekit(), enhancedImages()],
 		build: {
 			sourcemap: true,
 			modulePreload: {
