@@ -1,6 +1,8 @@
-// src/routes/account/+page.server.js
 import { SESSION_COOKIE, createSessionClient } from '$lib/server/appwrite.js'
 import { redirect } from '@sveltejs/kit'
+
+export const ssr = true
+export const csr = false
 
 export async function load({ locals }) {
 	// Logged out users can't access this page.

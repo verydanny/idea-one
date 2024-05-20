@@ -1,11 +1,11 @@
 import { sveltekit } from '@sveltejs/kit/vite'
-import { purgeCss } from 'vite-plugin-tailwind-purgecss'
+// import { purgeCss } from 'vite-plugin-tailwind-purgecss'
 // import { visualizer } from 'rollup-plugin-visualizer'
 import { type UserConfig, defineConfig } from 'vitest/config'
 
 export default defineConfig(() => {
 	return {
-		plugins: [sveltekit(), purgeCss()],
+		plugins: [sveltekit()],
 		build: {
 			sourcemap: true,
 			modulePreload: {
