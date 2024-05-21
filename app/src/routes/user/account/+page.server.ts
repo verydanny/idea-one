@@ -5,26 +5,26 @@ export const ssr = true
 export const csr = false
 
 export async function load({ locals }) {
-	// Logged out users can't access this page.
-	if (!locals.user) redirect(301, '/user/auth/signup')
+  // Logged out users can't access this page.
+  if (!locals.user) redirect(301, '/user/auth/signup')
 
-	// Pass the stored user local to the page.
-	return {
-		user: locals.user
-	}
+  // Pass the stored user local to the page.
+  return {
+    user: locals.user
+  }
 }
 
 // Define our log out endpoint/server action.
 export const actions = {
-	default: async (event) => {
-		// Create the Appwrite client.
-		const { account } = createSessionClient(event)
+  default: async (event) => {
+    // Create the Appwrite client.
+    const { account } = createSessionClient(event)
 
-		// Delete the session on Appwrite, and delete the session cookie.
-		await account.deleteSession('current')
-		event.cookies.delete(SESSION_COOKIE, { path: '/' })
+    // Delete the session on Appwrite, and delete the session cookie.
+    await account.deleteSession('current')
+    event.cookies.delete(SESSION_COOKIE, { path: '/' })
 
-		// Redirect to the sign up page.
-		redirect(301, '/user/auth/signup')
-	}
+    // Redirect to the sign up page.
+    redirect(301, '/user/auth/signup')
+  }
 }

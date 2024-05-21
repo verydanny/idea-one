@@ -5,23 +5,23 @@ import { enhancedImages } from '@sveltejs/enhanced-img'
 import { type UserConfig, defineConfig } from 'vitest/config'
 
 export default defineConfig(() => {
-	return {
-		plugins: [sveltekit(), enhancedImages()],
-		build: {
-			sourcemap: true,
-			modulePreload: {
-				polyfill: false
-			},
-			target: 'esnext'
-		},
-		esbuild: {
-			target: 'esnext'
-		},
-		test: {
-			include: ['src/**/*.{test,spec}.{js,ts}']
-		},
-		server: {
-			port: Bun.env.PORT ? Number(Bun.env.PORT) : 3002
-		}
-	} satisfies UserConfig
+  return {
+    plugins: [sveltekit(), enhancedImages()],
+    build: {
+      sourcemap: true,
+      modulePreload: {
+        polyfill: false
+      },
+      target: 'esnext'
+    },
+    esbuild: {
+      target: 'esnext'
+    },
+    test: {
+      include: ['src/**/*.{test,spec}.{js,ts}']
+    },
+    server: {
+      port: Bun.env.PORT ? Number(Bun.env.PORT) : 3002
+    }
+  } satisfies UserConfig
 })
