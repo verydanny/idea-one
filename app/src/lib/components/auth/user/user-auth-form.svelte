@@ -5,20 +5,34 @@
   import { Input } from '$lib/components/ui/input/index'
   import { Label } from '$lib/components/ui/label/index'
   import { cn } from '$lib/utils'
-  import type { PageData } from '../sign[type=auth]/$types'
+  import type { PageData as SignupPageData } from '../signup/$types'
+  import type { PageData as SigninPageData } from '../signin/$types'
 
-  export let className: string | undefined | null = undefined
-  export let type: 'signin' | 'signup'
-  export let data: PageData
+  let className: string | undefined | null = undefined
+  export let type: 'signin' | 'signup' | undefined | null = undefined
+
+  export { className as class }
+  export let data: SignupPageData | SigninPageData
+
+  console.log('>>> data', data)
 
   const { form, errors, constraints, message, enhance } = superForm(data.form)
 </script>
 
 <div class={cn('grid gap-6', className)} {...$$restProps}>
   {#if $message}<h3>{$message}</h3>{/if}
-  <form method="post" action="/user/auth/{type}?/{type}" use:enhance>
+  <form action="/user/auth/{type}?/{type}" method="post" use:enhance>
     <div class="grid gap-2">
       <div class="grid gap-1">
+        <!-- <Label class="sr-only" for="name">Name</Label>
+				<Input
+					id="name"
+					placeholder="Billy Bob"
+					type="name"
+					autocapitalize="none"
+					autocomplete="name"
+					autocorrect="off"
+				/> -->
         {#if $errors.email}
           <span class="invalid">{$errors.email}</span>
         {/if}
