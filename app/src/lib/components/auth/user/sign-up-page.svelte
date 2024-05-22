@@ -10,8 +10,8 @@
   class="container relative grid h-[800px] flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0"
 >
   <Button
-    href={isSigninPage ? '/user/auth/signup' : '/user/auth/signin'}
-    variant="outline"
+    href={isSigninPage ? '/auth/user/signup' : '/auth/user/signin'}
+    variant="secondary"
     class="absolute right-4 top-4 md:right-8 md:top-8"
   >
     {isSigninPage ? 'Register' : 'Login'}

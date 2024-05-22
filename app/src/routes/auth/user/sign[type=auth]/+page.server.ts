@@ -4,19 +4,20 @@ import { superValidate, message } from 'sveltekit-superforms'
 import { fail } from '@sveltejs/kit'
 
 import { SESSION_COOKIE, createAdminClient } from '$lib/server/appwrite'
-import { schema } from './schema'
+import { loginSchema } from '$lib/schema/auth/user'
+
+export const ssr = true
+export const csr = false
 
 export const load = async () => {
-  const form = await superValidate(typebox(schema))
+  const form = await superValidate(typebox(loginSchema))
 
   return { form }
 }
 
 export const actions = {
   signup: async ({ request, cookies }) => {
-    const form = await superValidate(request, typebox(schema))
-
-    console.log('In Signup', form.valid)
+    const form = await superValidate(request, typebox(loginSchema))
 
     if (!form.valid) {
       return fail(400, { form })
@@ -43,7 +44,7 @@ export const actions = {
     return message(form, 'Registered successfully')
   },
   signin: async ({ request, cookies }) => {
-    const form = await superValidate(request, typebox(schema))
+    const form = await superValidate(request, typebox(loginSchema))
 
     if (!form.valid) {
       return fail(400, { form })
