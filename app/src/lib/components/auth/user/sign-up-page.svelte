@@ -1,6 +1,13 @@
 <script lang="ts">
   import AuthenticationImg from '$lib/images/authentication-bg.avif'
   import { page } from '$app/stores'
+  import type { Snippet } from 'svelte'
+
+  interface MyProps {
+    children: Snippet
+  }
+
+  let { children }: MyProps = $props()
 
   const { params } = $page
   const typeMapping = {
@@ -47,7 +54,7 @@
           : 'Enter your email below to log into your account'}
       </p>
     </div>
-    <slot />
+    {@render children()}
     <p class="px-8 text-center text-sm text-muted-foreground">
       By clicking continue, you agree to our
       <a href="/terms" class="underline underline-offset-4 hover:text-primary">

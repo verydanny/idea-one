@@ -1,12 +1,10 @@
-import { defaultConfig } from 'tailwind-variants'
+import { twMerge } from 'tailwind-merge'
 import { type ClassValue, clsx } from 'clsx'
 import { cubicOut } from 'svelte/easing'
 import type { TransitionConfig } from 'svelte/transition'
 
-defaultConfig.twMerge = false
-
 export function cn(...inputs: ClassValue[]) {
-  return clsx(inputs)
+  return twMerge(clsx(inputs))
 }
 
 type FlyAndScaleParams = {

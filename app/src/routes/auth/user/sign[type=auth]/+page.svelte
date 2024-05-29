@@ -7,16 +7,14 @@
   import { Label } from '$lib/components/ui/label/index'
   import { cn } from '$lib/utils'
 
-  export let data
-  export let className: string | undefined | null = undefined
+  interface MyProps {
+    class: string
+    data: import('./$types').PageData
+  }
 
-  const {
-    constraints,
-    form: f,
-    capture,
-    restore,
-    errors
-  } = superForm(data.form)
+  let { data, class: className, ...restProps }: MyProps = $props()
+
+  const { constraints, form, capture, restore, errors } = superForm(data.form)
   const {
     url: { pathname },
     params
@@ -32,13 +30,13 @@
 </script>
 
 {#if type === 'signout'}
-  <div class={cn('grid gap-6', className)} {...$$restProps}>
+  <div class={cn('grid gap-6', className)} {...restProps}>
     <h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
       Successfully Signed out
     </h1>
   </div>
 {:else}
-  <div class={cn('grid gap-6', className)} {...$$restProps}>
+  <div class={cn('grid gap-6', className)} {...restProps}>
     <form method="post" action="{pathname}?/{type}">
       <div class="grid gap-2">
         {#if type === 'signin' || type === 'signup'}
@@ -52,7 +50,7 @@
               autocomplete="email"
               autocorrect="off"
               aria-invalid={$errors.email ? true : false}
-              value={$f.email}
+              value={$form.email}
               {...$constraints.email}
             />
             <Label class="sr-only" for="password">Email</Label>
@@ -64,7 +62,7 @@
               autocomplete="password"
               autocorrect="off"
               aria-invalid={$errors.password ? true : false}
-              value={$f.password}
+              value={$form.password}
               {...$constraints.password}
             />
           </div>

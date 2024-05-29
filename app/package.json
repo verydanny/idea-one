@@ -5,7 +5,7 @@
     "dev": "PORT=3002 bun --bun run vite dev",
     "build": "bun --bun run vite build",
     "preview": "PORT=3002 bun --bun run vite preview",
-    "start": "PORT=3002 bun --bun run ./build/index.js",
+    "start": "PORT=3002 bun run build/index.js",
     "test": "bun --bun run test:integration && bun --bun run test:unit",
     "check": "bun --bun run svelte-kit sync && bun --bun run svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "bun --bun run svelte-kit sync && bun --bun run svelte-check --tsconfig ./tsconfig.json --watch",
@@ -15,7 +15,6 @@
     "test:unit": "vitest"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.7.3",
     "@eslint/js": "^9.3.0",
     "@playwright/test": "^1.44.1",
     "@sinclair/typebox": "^0.32.31",
@@ -44,8 +43,10 @@
     "svelte-adapter-bun": "^0.5.2",
     "svelte-check": "^3.7.1",
     "svelte-eslint-parser": "^0.36.0",
+    "svelte-language-server": "^0.16.9",
     "svelte-radix": "^1.1.0",
     "sveltekit-superforms": "^2.14",
+    "tailwind-merge": "file:../../tailwind-merge",
     "tailwind-variants": "^0.2.1",
     "tailwindcss": "^3.4.3",
     "tslib": "^2.6.2",
@@ -62,5 +63,5 @@
   "engines": {
     "bun": ">=1.1.0"
   },
-  "dependencies": {}
+  "dependencies": { "vaul-svelte": "^0.3.1" }
 }

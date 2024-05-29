@@ -10,8 +10,8 @@ import {
 import { loginSchema } from '$lib/schema/auth/user'
 import type { RequestEvent } from './$types'
 
-export const ssr = true
-export const csr = false
+// export const ssr = true
+// export const csr = false
 
 export const load = async ({ locals, params, cookies }) => {
   const form = await superValidate(typebox(loginSchema))

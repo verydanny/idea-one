@@ -5,5 +5,6 @@
   "[javascript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
-  "biome.enabled": false
+  "svelte.language-server.ls-path": "app/node_modules/svelte-language-server/bin/server.js",
+  "svelte.enable-ts-plugin": true
 }
