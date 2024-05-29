@@ -3,7 +3,7 @@ import {
   PUBLIC_APPWRITE_ENDPOINT,
   PUBLIC_APPWRITE_PROJECT
 } from '$env/static/public'
-import { Account, Client } from 'node-appwrite'
+import { Account, Client, ID } from 'node-appwrite'
 
 export const SESSION_COOKIE = 'kopipi-dinglebangle'
 
@@ -21,13 +21,13 @@ export function createAdminClient() {
 }
 
 export function createSessionClient(
-  event: Parameters<import('@sveltejs/kit').Handle>[0]['event']
+  cookies: Parameters<import('@sveltejs/kit').Handle>[0]['event']['cookies']
 ) {
   const client = new Client()
     .setEndpoint(PUBLIC_APPWRITE_ENDPOINT)
     .setProject(PUBLIC_APPWRITE_PROJECT)
 
-  const session = event.cookies.get(SESSION_COOKIE)
+  const session = cookies.get(SESSION_COOKIE)
 
   if (!session) {
     throw new Error('No user session')
@@ -40,4 +40,20 @@ export function createSessionClient(
       return new Account(client)
     }
   }
+}
+
+export const createAppwriteEmailPasswordAccount = async (
+  email: string,
+  password: string,
+  create: boolean = false
+) => {
+  // Create the Appwrite client.
+  const { account } = createAdminClient()
+
+  if (create) {
+    // Create the session using the client
+    await account.create(ID.unique(), email, password)
+  }
+
+  return account.createEmailPasswordSession(email, password)
 }

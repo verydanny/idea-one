@@ -1,4 +1,4 @@
-import type { Models } from 'node-appwrite'
+import type { Models, Account } from 'node-appwrite'
 
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
@@ -7,6 +7,7 @@ declare global {
     // interface Error {}
     interface Locals {
       user: Models.User<Models.Preferences> | undefined
+      account?: Account
     }
     // interface PageData {}
     // interface PageState {}
